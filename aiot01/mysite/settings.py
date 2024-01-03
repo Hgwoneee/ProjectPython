@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-(pv@rgk%=imq&y)(_7q-@@_o#3q+#45o+oe9dq&_svsw702_z_
 DEBUG = True
 
 # ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['192.168.0.52', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['192.168.0.52', 'localhost', '127.0.0.1']
 
 # Application definition
@@ -39,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chargingstations',
     'rest_framework',
+    'corsheaders',
     #'user',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +54,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+"""
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React 앱이 호스팅된 도메인
+    # 다른 필요한 도메인 추가
+]
+"""
 
 ROOT_URLCONF = 'mysite.urls'
 
