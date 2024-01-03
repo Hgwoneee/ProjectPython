@@ -1,11 +1,15 @@
 # chargingstations/models.py
+
 from django.db import models
 
 class ChargingStation(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
-    # 추가 필드들을 정의할 수 있음
+    addr = models.CharField(max_length=255, null=True)
+    statNm = models.CharField(max_length=100, null=True)
+    statId = models.CharField(max_length=50, null=True)
+    chgerId = models.CharField(max_length=50, null=True)
+    chgerType = models.CharField(max_length=50, null=True)
+    lat = models.FloatField(null=True)
+    lng = models.FloatField(null=True)
 
     class Meta:
-        # Table이름을 "User"로 정한다. default 이름은 user_user가 된다.
         db_table = "Station"

@@ -1,8 +1,9 @@
-# chargingstations/api/views.py
-from rest_framework import viewsets
+# views.py
+from rest_framework import generics
 from .models import ChargingStation
 from .serializers import ChargingStationSerializer
 
-class ChargingStationViewSet(viewsets.ModelViewSet):
+class ChargingStationListCreateView(generics.ListCreateAPIView):
     queryset = ChargingStation.objects.all()
     serializer_class = ChargingStationSerializer
+

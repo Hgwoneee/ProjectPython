@@ -1,16 +1,35 @@
-# chargingstations/utils.py
+# utils.py
+
 import requests
+from urllib import parse
+from bs4 import BeautifulSoup
 from .models import ChargingStation
 
-def fetch_and_save_charging_stations():
-    url = 'https://example.com/api/charging_stations'  # 전기차주유소 데이터를 제공하는 API 엔드포인트
-    response = requests.get(url)
+def fetch_and_save_charging_stations(api_key):
+    url = "http://apis.data.go.kr/B552584/EvCharger/getChargerInfo"
 
-    if response.status_code == 200:
-        charging_stations = response.json()  # JSON 형식의 데이터로 가져옴
-        for station_data in charging_stations:
-            ChargingStation.objects.create(
-                name=station_data['name'],
-                location=station_data['location'],
-                # 필요한 다른 필드들을 추가할 수 있음
-            )
+    api_key_decode = parse.unquote(api_key)
+
+    params = {
+        "ServiceKey": api_key_decode,
+        "pageNo": 1,
+        "numOfRows": 1000
+    }
+
+    response = requests.get(url, params=params)
+    xml = BeautifulSoup(response.text, "xml")
+    items = xml.find_all("item")
+    for item in items:
+        ChargingStation.objects.create(
+            addr=item.find("addr").text.strip(),
+            statNm=item.find("statNm").text.strip(),
+            statId=item.find("statId").text.strip(),
+            chgerId=item.find("chgerId").text.strip(),
+            chgerType=item.find("chgerType").text.strip(),
+            lat=float(item.find("lat").text.strip()),
+            lng=float(item.find("lng").text.strip())
+        )
+
+# Usage:
+api_key_utf8 = "EpUhD8WnDkKZKfH5rj1U7C9Y5hCObQbwGjbEU00ZYw0lWevnETv7%2BlHjECr%2F0%2BJaWN9K1SW10Fzj8IsBkaGOWQ%3D%3D"
+fetch_and_save_charging_stations(api_key_utf8)

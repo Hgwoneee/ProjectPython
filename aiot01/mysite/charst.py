@@ -1,7 +1,6 @@
 import pandas as pd
 import requests
 from urllib import parse
-import lxml
 from bs4 import BeautifulSoup
 
 
@@ -16,7 +15,6 @@ parms = {
 }
 
 response = requests.get(url,params=parms)
-print(response.text)
 xml = BeautifulSoup(response.text,"xml")
 items = xml.find("items")
 item_list = []

@@ -1,8 +1,8 @@
-# chargingstations/api/urls.py
-from rest_framework.routers import DefaultRouter
-from .views import ChargingStationViewSet
+# chargingstations/urls.py
+from django.urls import path
+from .views import ChargingStationListCreateView
 
-router = DefaultRouter()
-router.register(r'charging-stations', ChargingStationViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('charging-stations/', ChargingStationListCreateView.as_view(), name='charging-stations'),
+    # Other URL patterns if any
+]
