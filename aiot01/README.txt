@@ -6,9 +6,28 @@ grant all privileges on aiot.* to 'aiot'@'localhost';
 create user 'aiot'@'%' identified by 'aiot';
 grant all privileges on aiot.* to 'aiot'@'%';
 
-2. 공공데이터 수집
+2.
+
+3. cors 설정
+cmd 관리자로 열어서 pip install django-cors-headers
+
+INSTALLED_APPS = [
+    # ...
+    'corsheaders',
+    # ...
+]
+
+# 미들웨어 설정
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 상단에 작성
+    # ...
+]
+
+CORS_ALLOW_ALL_ORIGINS = True 모든 도메인 허용
+
+4. 공공데이터 수집
 python manage.py fetchchargingstations
 
-3. django 실행
+5. django 실행
 python manage.py runserver 0.0.0.0:8000
 
