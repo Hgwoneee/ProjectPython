@@ -10,6 +10,11 @@ class ChargingStation(models.Model):
     chgerType = models.CharField(max_length=50, null=True)
     lat = models.FloatField(null=True)
     lng = models.FloatField(null=True)
+    useTime = models.CharField(max_length=50, null=True)
+    parkingFree = models.CharField(max_length=50, null=True)
+    stat = models.CharField(max_length=50, null=True)
+    statUpdDt = models.DateTimeField(auto_now=True, null=True)  # 변경 시간대 정보 자동 갱신
+
 
     class Meta:
         db_table = "Station"

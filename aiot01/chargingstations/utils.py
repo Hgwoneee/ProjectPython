@@ -1,4 +1,5 @@
 # utils.py
+from datetime import datetime
 
 import requests
 from urllib import parse
@@ -13,7 +14,7 @@ def fetch_and_save_charging_stations(api_key):
     params = {
         "ServiceKey": api_key_decode,
         "pageNo": 1,
-        "numOfRows": 1000
+        "numOfRows": 2000
     }
 
     response = requests.get(url, params=params)
@@ -27,9 +28,13 @@ def fetch_and_save_charging_stations(api_key):
             chgerId=item.find("chgerId").text.strip(),
             chgerType=item.find("chgerType").text.strip(),
             lat=float(item.find("lat").text.strip()),
-            lng=float(item.find("lng").text.strip())
+            lng=float(item.find("lng").text.strip()),
+            useTime=item.find("useTime").text.strip(),
+            parkingFree=item.find("parkingFree").text.strip(),
+            stat=item.find("stat").text.strip(),
+            statUpdDt = datetime.strptime(item.find("statUpdDt").text.strip(), '%Y%m%d%H%M%S')
         )
 
 # Usage:
 api_key_utf8 = "EpUhD8WnDkKZKfH5rj1U7C9Y5hCObQbwGjbEU00ZYw0lWevnETv7%2BlHjECr%2F0%2BJaWN9K1SW10Fzj8IsBkaGOWQ%3D%3D"
-fetch_and_save_charging_stations(api_key_utf8)
+#fetch_and_save_charging_stations(api_key_utf8)

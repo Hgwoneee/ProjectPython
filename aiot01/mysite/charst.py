@@ -28,7 +28,7 @@ for item in items:
         '위도':item.find("lat").text.strip(),
         '경도':item.find("lng").text.strip(),
         '이용가능시간':item.find("useTime").text.strip(),
-        '주차료': item.find("parkingFree").text.strip()
+        '주차료': item.find("parkingFree").text.strip(),
     }
     item_list.append(item_dict)
 
