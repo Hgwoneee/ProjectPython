@@ -6,7 +6,10 @@ grant all privileges on aiot.* to 'aiot'@'localhost';
 create user 'aiot'@'%' identified by 'aiot';
 grant all privileges on aiot.* to 'aiot'@'%';
 
-2.
+2. 마이그레이션 설정
+python manage.py makemigrations
+python manage.py migrate
+
 
 3. cors 설정
 cmd 관리자로 열어서 pip install django-cors-headers

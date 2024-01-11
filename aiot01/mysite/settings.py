@@ -29,8 +29,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['192.168.0.52', 'localhost', '127.0.0.1']
 ALLOWED_HOSTS = ['192.168.0.52', 'localhost', '127.0.0.1']
 
-# Application definition
-
+# 설치된 애플리케이션 목록
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +40,6 @@ INSTALLED_APPS = [
     'chargingstations',
     'rest_framework',
     'corsheaders',
-    #'user',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# CORS 설정 - 모든 오리진에 대한 액세스를 허용합니다.
 CORS_ALLOW_ALL_ORIGINS = True
 
 """
@@ -85,9 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# 데이터베이스 설정 - MySQL을 사용합니다.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
