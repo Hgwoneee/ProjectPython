@@ -100,4 +100,5 @@ def upload_and_extract_license_plate_text():
 
 if __name__ == '__main__':
     # Run the Flask app
-    app.run(debug=True)
+    app.run(port=5001)
+    #app.run(debug=True)
