@@ -6,6 +6,12 @@ import os
 import json
 from flask import make_response
 app = Flask(__name__)
+
+#from flask import Flask
+from flask_cors import CORS
+#app = Flask(__name__)
+CORS(app)
+
 # Function to preprocess the license plate image
 def preprocess_license_plate(image_path):
     # Check if the image file exists
@@ -100,5 +106,6 @@ def upload_and_extract_license_plate_text():
 
 if __name__ == '__main__':
     # Run the Flask app
-    app.run(port=5001)
+    #app.run(port=5001)
     #app.run(debug=True)
+    app.run(host='0.0.0.0', port=5001)
